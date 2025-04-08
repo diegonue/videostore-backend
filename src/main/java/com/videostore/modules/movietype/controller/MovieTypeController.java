@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/movie-types")
+@RequestMapping("/api/movie-types")
 @RequiredArgsConstructor
 public class MovieTypeController {
 
