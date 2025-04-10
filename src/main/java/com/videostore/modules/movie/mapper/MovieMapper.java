@@ -23,7 +23,7 @@ public class MovieMapper {
         dto.setGenreId(movie.getGenre() != null ? movie.getGenre().getId() : null);
         dto.setMovieTypeId(movie.getMovieType() != null ? movie.getMovieType().getId() : null);
         dto.setActorIds(movie.getActors().stream().map(Actor::getId).collect(Collectors.toSet()));
-        dto.setDirectorsIds(movie.getDirectors().stream().map(Director::getId).collect(Collectors.toSet()));
+        dto.setDirectorIds(movie.getDirectors().stream().map(Director::getId).collect(Collectors.toSet()));
         return dto;
     }
 

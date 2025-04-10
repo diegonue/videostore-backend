@@ -39,7 +39,7 @@ public class EmployeeRoleServiceImpl implements EmployeeRoleService {
 
     @Override
     public void deleteById(Integer id) {
-
+        employeeRoleRepository.deleteById(id);
     }
 
 
