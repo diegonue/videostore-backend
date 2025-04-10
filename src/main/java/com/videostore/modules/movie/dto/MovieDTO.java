@@ -18,6 +18,5 @@ public class MovieDTO {
     private Integer movieTypeId;
 
     private Set<Integer> actorIds;
-    private Set<Integer> directorsIds;
-
+    private Set<Integer> directorIds;
 }
