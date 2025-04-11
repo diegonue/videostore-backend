@@ -4,16 +4,15 @@ import com.videostore.common.model.AuditableEntity;
 import com.videostore.modules.copystatus.model.CopyStatus;
 import com.videostore.modules.movie.model.Movie;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "copies")
 @Data
 @NoArgsConstructor @AllArgsConstructor
-@Builder
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
 public class Copy extends AuditableEntity {
 
     @Id
