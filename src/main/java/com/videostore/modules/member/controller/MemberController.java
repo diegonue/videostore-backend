@@ -2,6 +2,7 @@ package com.videostore.modules.member.controller;
 
 import com.videostore.modules.member.dto.MemberDTO;
 import com.videostore.modules.member.service.MemberService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping
-    public ResponseEntity<MemberDTO> create(@RequestBody MemberDTO dto) {
+    public ResponseEntity<MemberDTO> create(@Valid @RequestBody MemberDTO dto) {
         return ResponseEntity.ok(memberService.save(dto));
     }
 
