@@ -2,6 +2,7 @@ package com.videostore.modules.movie.controller;
 
 import com.videostore.modules.movie.dto.MovieDTO;
 import com.videostore.modules.movie.service.MovieService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class MovieController {
     private final MovieService movieService;
 
     @PostMapping
-    public ResponseEntity<MovieDTO> create(@RequestBody MovieDTO dto) {
+    public ResponseEntity<MovieDTO> create(@Valid @RequestBody MovieDTO dto) {
         return ResponseEntity.ok(movieService.save(dto));
     }
 
