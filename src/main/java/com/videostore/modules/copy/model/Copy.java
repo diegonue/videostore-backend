@@ -1,5 +1,6 @@
 package com.videostore.modules.copy.model;
 
+import com.videostore.common.model.AuditableEntity;
 import com.videostore.modules.copystatus.model.CopyStatus;
 import com.videostore.modules.movie.model.Movie;
 import jakarta.persistence.*;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @Builder
-public class Copy {
+public class Copy extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

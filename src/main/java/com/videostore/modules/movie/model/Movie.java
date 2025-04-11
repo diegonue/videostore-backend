@@ -1,5 +1,6 @@
 package com.videostore.modules.movie.model;
 
+import com.videostore.common.model.AuditableEntity;
 import com.videostore.modules.actor.model.Actor;
 import com.videostore.modules.director.model.Director;
 import com.videostore.modules.genre.model.Genre;
@@ -18,7 +19,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @Builder
-public class Movie {
+public class Movie extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

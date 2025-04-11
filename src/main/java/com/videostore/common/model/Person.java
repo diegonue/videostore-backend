@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @SuperBuilder
-public abstract class Person {
+public abstract class Person extends AuditableEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
