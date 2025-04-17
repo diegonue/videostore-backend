@@ -38,4 +38,9 @@ public class MovieController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/by-genre/{genreId}")
+    public ResponseEntity<List<MovieDTO>> getByGenre(@PathVariable Integer genreId) {
+        return ResponseEntity.ok(movieService.findByGenreId(genreId));
+    }
+
 }

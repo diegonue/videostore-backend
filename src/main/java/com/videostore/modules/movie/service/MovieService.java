@@ -10,5 +10,6 @@ public interface MovieService {
     List<MovieDTO> findAll();
     MovieDTO findById(Integer id);
     void deleteById(Integer id);
+    List<MovieDTO> findByGenreId(Integer genreId);
 
 }

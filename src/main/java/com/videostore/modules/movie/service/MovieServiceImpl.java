@@ -62,4 +62,11 @@ public class MovieServiceImpl implements MovieService {
     public void deleteById(Integer id) {
         movieRepository.deleteById(id);
     }
+
+    @Override
+    public List<MovieDTO> findByGenreId(Integer genreId) {
+        return movieRepository.findByGenreId(genreId).stream()
+                .map(MovieMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 }
