@@ -51,4 +51,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.deleteById(id);
     }
 
+    @Override
+    public List<EmployeeDTO> findByRoleId(Integer roleId) {
+        return employeeRepository.findByRoleId(roleId).stream()
+                .map(EmployeeMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
 }

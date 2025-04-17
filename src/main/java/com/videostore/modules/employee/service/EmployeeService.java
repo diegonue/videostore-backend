@@ -10,5 +10,6 @@ public interface EmployeeService {
     List<EmployeeDTO> findAll();
     EmployeeDTO findById(Integer id);
     void deleteById(Integer id);
+    List<EmployeeDTO> findByRoleId(Integer roleId);
 
 }

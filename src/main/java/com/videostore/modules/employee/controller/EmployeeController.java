@@ -38,4 +38,9 @@ public class EmployeeController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/by-role/{roleId}")
+    public ResponseEntity<List<EmployeeDTO>> getByRole(@PathVariable Integer roleId) {
+        return ResponseEntity.ok(employeeService.findByRoleId(roleId));
+    }
+
 }
