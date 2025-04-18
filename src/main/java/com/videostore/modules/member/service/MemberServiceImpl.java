@@ -1,5 +1,6 @@
 package com.videostore.modules.member.service;
 
+import com.videostore.common.util.EntityFinder;
 import com.videostore.modules.district.model.District;
 import com.videostore.modules.district.repository.DistrictRepository;
 import com.videostore.modules.member.dto.MemberDTO;
@@ -18,10 +19,12 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
     private final DistrictRepository districtRepository;
+    private final EntityFinder finder;
 
     @Override
     public MemberDTO save(MemberDTO dto) {
-        District district = districtRepository.findById(dto.getDistrictId()).orElseThrow();
+        District district = finder.findOrThrow(districtRepository, dto.getDistrictId(), "Distrito");
+
         Member member = MemberMapper.toEntity(dto, district);
         return MemberMapper.toDTO(memberRepository.save(member));
     }

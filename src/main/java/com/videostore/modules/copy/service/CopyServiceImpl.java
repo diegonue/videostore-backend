@@ -1,5 +1,6 @@
 package com.videostore.modules.copy.service;
 
+import com.videostore.common.util.EntityFinder;
 import com.videostore.modules.copy.dto.CopyDTO;
 import com.videostore.modules.copy.mapper.CopyMapper;
 import com.videostore.modules.copy.model.Copy;
@@ -21,11 +22,12 @@ public class CopyServiceImpl implements CopyService {
     private final CopyRepository copyRepository;
     private final MovieRepository movieRepository;
     private final CopyStatusRepository copyStatusRepository;
+    private final EntityFinder finder;
 
     @Override
     public CopyDTO save(CopyDTO dto) {
-        Movie movie = movieRepository.findById(dto.getMovieId()).orElseThrow();
-        CopyStatus copyStatus = copyStatusRepository.findById(dto.getStatusId()).orElseThrow();
+        Movie movie = finder.findOrThrow(movieRepository, dto.getMovieId(), "Película");
+        CopyStatus copyStatus = finder.findOrThrow(copyStatusRepository, dto.getStatusId(), "Estado de copia");
 
         Copy copy = CopyMapper.toEntity(dto, movie, copyStatus);
         return CopyMapper.toDTO(copyRepository.save(copy));

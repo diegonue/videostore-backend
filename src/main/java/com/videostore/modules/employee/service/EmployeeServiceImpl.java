@@ -1,5 +1,6 @@
 package com.videostore.modules.employee.service;
 
+import com.videostore.common.util.EntityFinder;
 import com.videostore.modules.district.model.District;
 import com.videostore.modules.district.repository.DistrictRepository;
 import com.videostore.modules.employee.dto.EmployeeDTO;
@@ -23,11 +24,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final DistrictRepository districtRepository;
     private final EmployeeRoleRepository employeeRoleRepository;
+    private final EntityFinder finder;
 
     @Override
     public EmployeeDTO save(EmployeeDTO dto) {
-        District district = districtRepository.findById(dto.getDistrictId()).orElseThrow();
-        EmployeeRole employeeRole = employeeRoleRepository.findById(dto.getRoleId()).orElseThrow();
+        District district = finder.findOrThrow(districtRepository, dto.getDistrictId(), "Distrito");
+        EmployeeRole employeeRole = finder.findOrThrow(employeeRoleRepository, dto.getRoleId(), "Rol");
 
         Employee employee = EmployeeMapper.toEntity(dto, district, employeeRole);
         return EmployeeMapper.toDTO(employeeRepository.save(employee));

@@ -1,5 +1,6 @@
 package com.videostore.modules.movie.service;
 
+import com.videostore.common.util.EntityFinder;
 import com.videostore.modules.actor.model.Actor;
 import com.videostore.modules.actor.repository.ActorRepository;
 import com.videostore.modules.director.model.Director;
@@ -30,11 +31,12 @@ public class MovieServiceImpl implements MovieService {
     private final MovieTypeRepository movieTypeRepository;
     private final DirectorRepository directorRepository;
     private final ActorRepository actorRepository;
+    private final EntityFinder finder;
 
     @Override
     public MovieDTO save(MovieDTO dto) {
-        Genre genre = genreRepository.findById(dto.getGenreId()).orElseThrow();
-        MovieType movieType = movieTypeRepository.findById(dto.getMovieTypeId()).orElseThrow();
+        Genre genre = finder.findOrThrow(genreRepository, dto.getGenreId(), "Género");
+        MovieType movieType = finder.findOrThrow(movieTypeRepository, dto.getMovieTypeId(), "Tipo de película");
 
         Set<Director> directors = directorRepository.findAllById(dto.getDirectorIds()).stream().collect(Collectors.toSet());
         Set<Actor> actors = actorRepository.findAllById(dto.getActorIds()).stream().collect(Collectors.toSet());
