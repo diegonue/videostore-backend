@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/movies")
@@ -41,6 +42,11 @@ public class MovieController {
     @GetMapping("/by-genre/{genreId}")
     public ResponseEntity<List<MovieDTO>> getByGenre(@PathVariable Integer genreId) {
         return ResponseEntity.ok(movieService.findByGenreId(genreId));
+    }
+
+    @GetMapping("/count-by-genre")
+    public ResponseEntity<List<Map<String, Object>>> countByGenre() {
+        return ResponseEntity.ok(movieService.countMoviesByGenre());
     }
 
 }

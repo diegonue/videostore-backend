@@ -3,6 +3,7 @@ package com.videostore.modules.movie.service;
 import com.videostore.modules.movie.dto.MovieDTO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MovieService {
 
@@ -11,5 +12,6 @@ public interface MovieService {
     MovieDTO findById(Integer id);
     void deleteById(Integer id);
     List<MovieDTO> findByGenreId(Integer genreId);
+    List<Map<String, Object>> countMoviesByGenre();
 
 }

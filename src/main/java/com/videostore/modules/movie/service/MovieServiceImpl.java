@@ -15,7 +15,9 @@ import com.videostore.modules.movietype.repository.MovieTypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -69,4 +71,15 @@ public class MovieServiceImpl implements MovieService {
                 .map(MovieMapper::toDTO)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Map<String, Object>> countMoviesByGenre() {
+        return movieRepository.countMoviesByGenre().stream().map(row -> {
+            Map<String, Object> map = new HashMap<>();
+            map.put("genre", row[0]);
+            map.put("count", row[1]);
+            return map;
+        }).collect(Collectors.toList());
+    }
+
 }
