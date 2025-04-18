@@ -11,7 +11,9 @@ import com.videostore.modules.employeerole.repository.EmployeeRoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -56,6 +58,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.findByRoleId(roleId).stream()
                 .map(EmployeeMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Map<String, Object>> countEmployeesByRole() {
+        return employeeRepository.countEmployeesByRole().stream().map(row -> {
+            Map<String, Object> map = new HashMap<>();
+            map.put("role", row[0]);
+            map.put("count", row[1]);
+            return map;
+        }).collect(Collectors.toList());
     }
 
 }

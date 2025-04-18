@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/employees")
@@ -41,6 +42,11 @@ public class EmployeeController {
     @GetMapping("/by-role/{roleId}")
     public ResponseEntity<List<EmployeeDTO>> getByRole(@PathVariable Integer roleId) {
         return ResponseEntity.ok(employeeService.findByRoleId(roleId));
+    }
+
+    @GetMapping("/count-by-role")
+    public ResponseEntity<List<Map<String, Object>>> countByRole() {
+        return ResponseEntity.ok(employeeService.countEmployeesByRole());
     }
 
 }
